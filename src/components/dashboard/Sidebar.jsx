@@ -1,6 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-export default function Sidebar({ isMinimized, toggleSidebar }) {
+export default function Layout() {
+    const [isMinimized, setIsMinimized] = useState(false);
+    const [isMobileOpen, setIsMobileOpen] = useState(false);
+    const [dropdownOpen, setDropdownOpen] = useState(false);
+
+    const toggleSidebar = () => setIsMinimized(!isMinimized);
+    const openMobileSidebar = () => setIsMobileOpen(true);
+    const closeMobileSidebar = () => setIsMobileOpen(false);
+
     const menuItems = [
         { name: 'Dashboard', icon: 'ri-dashboard-line' },
         { name: 'Pencari Kerja', icon: 'ri-user-line' },
@@ -15,43 +23,137 @@ export default function Sidebar({ isMinimized, toggleSidebar }) {
     ];
 
     return (
-        <aside
-            className={`bg-[#355485] text-white fixed left-0 top-0 h-screen transition-all duration-300 z-50 ${isMinimized ? 'w-16' : 'w-64'
-                }`}
-        >
-            {/* Logo / Brand */}
-            <div className="p-5 flex items-center border-b border-[#4f90c6]">
-                {!isMinimized ? (
-                    <h1 className="text-xl font-bold">JobPortal<span className="font-normal text-sm">Admin</span></h1>
-                ) : (
-                    <div className="w-full flex justify-center">
-                        <span className="text-2xl">💼</span>
-                    </div>
-                )}
-            </div>
+        <>
+            {/* Overlay untuk mobile */}
+            {isMobileOpen && (
+                <div
+                    className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+                    onClick={closeMobileSidebar}
+                ></div>
+            )}
 
-            {/* Navigation */}
-            <nav className="mt-4 px-2 space-y-1">
-                {menuItems.map((item, index) => (
-                    <a
-                        href="#"
-                        key={index}
-                        className={`flex items-center gap-3 p-3 rounded-lg hover:bg-[#4f90c6] transition-colors cursor-pointer ${item.name === 'Dashboard' ? 'bg-[#4f90c6]' : ''
-                            }`}
-                    >
-                        <i className={`${item.icon} text-lg`}></i>
-                        {!isMinimized && <span className="font-medium">{item.name}</span>}
-                    </a>
-                ))}
-            </nav>
-
-            {/* Minimize Button */}
-            <button
-                onClick={toggleSidebar}
-                className="absolute bottom-5 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-[#2a436c] hover:bg-[#4f90c6] rounded flex items-center justify-center text-sm transition"
+            {/* Sidebar */}
+            <aside
+                className={`fixed top-0 left-0 z-50 h-screen bg-[#355485] text-white transition-transform duration-300 lg:transition-all flex flex-col
+                ${isMobileOpen ? 'translate-x-0' : '-translate-x-full'} 
+                lg:translate-x-0 ${isMinimized ? 'w-16' : 'w-64'}`}
+                aria-label="Main Sidebar"
             >
-                <i className={`ri-arrow-${isMinimized ? 'right' : 'left'}-s-line`}></i>
-            </button>
-        </aside>
+                {/* Brand Logo */}
+                <div className="flex items-center p-5 border-b border-[#4f90c6]">
+                    {isMinimized ? (
+                        <div className="w-full flex justify-center" aria-label="Logo">
+                            <span className="text-2xl">💼</span>
+                        </div>
+                    ) : (
+                        <h1 className="text-xl font-bold">
+                            JobPortal<span className="font-normal text-sm">Admin</span>
+                        </h1>
+                    )}
+                </div>
+
+                {/* Navigation */}
+                <nav className="mt-4 px-2 flex-1 overflow-y-auto">
+                    <ul className="space-y-1">
+                        {menuItems.map((item) => (
+                            <li key={item.name}>
+                                <a
+                                    href="#"
+                                    className={`flex items-center gap-3 w-full p-3 rounded-lg hover:bg-[#4f90c6] transition-colors ${item.name === 'Dashboard' ? 'bg-[#4f90c6]' : ''
+                                        }`}
+                                >
+                                    <i className={`${item.icon} text-lg`}></i>
+                                    {!isMinimized && <span className="font-medium">{item.name}</span>}
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+                </nav>
+
+                {/* Minimize Button (Desktop Only) */}
+                {/* <button
+                    onClick={toggleSidebar}
+                    className="hidden lg:flex m-4 mb-6 items-center justify-center w-8 h-8 bg-[#2a436c] hover:bg-[#4f90c6] rounded-full text-sm transition-colors"
+                    aria-label={isMinimized ? 'Expand sidebar' : 'Minimize sidebar'}
+                >
+                    <i className={`ri-arrow-${isMinimized ? 'right' : 'left'}-s-line`}></i>
+                </button> */}
+            </aside>
+
+            <header
+                className={`fixed top-0 right-0 left-0 z-40 bg-white shadow-sm border-b border-[#e5e7eb] px-4 py-4 transition-all duration-300 flex items-center gap-4
+    ${isMinimized ? 'lg:left-16' : 'lg:left-64'} min-h-16`}
+            >
+                {/* Hamburger Button (Mobile Only) */}
+                <button
+                    onClick={openMobileSidebar}
+                    className="lg:hidden p-2 text-[#6b7280]"
+                    aria-label="Toggle Sidebar"
+                >
+                    <i className="ri-menu-line text-xl"></i>
+                </button>
+
+                {/* Search Bar */}
+                <div className="hidden sm:flex flex-grow max-w-[350px]">
+                    <div className="relative w-full">
+                        <i className="ri-search-2-line absolute left-3 top-1/2 -translate-y-1/2 text-[#9ca3af]"></i>
+                        <input
+                            type="text"
+                            placeholder="Cari data..."
+                            className="w-full pl-10 pr-4 py-2 border border-[#e5e7eb] rounded-lg bg-[#f9fafb] focus:outline-none focus:ring-2 focus:ring-[#4f90c6]"
+                        />
+                    </div>
+                </div>
+
+                {/* Right Section: Notif & Profile */}
+                <div className="flex items-center gap-3 sm:gap-6 ml-auto">
+                    <button
+                        className="relative text-[#6b7280] hover:text-[#355485]"
+                        aria-label="Notifikasi"
+                    >
+                        <i className="ri-notification-2-line text-xl"></i>
+                        <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">
+                            3
+                        </span>
+                    </button>
+
+                    {/* Profile */}
+                    <div className="relative">
+                        <button
+                            onClick={() => setDropdownOpen(!dropdownOpen)}
+                            className="flex items-center gap-2 text-[#6b7280] hover:text-[#355485]"
+                        >
+                            <div className="w-8 h-8 bg-[#4f90c6] rounded-full flex items-center justify-center text-white text-sm font-medium">
+                                AD
+                            </div>
+                            <span className="hidden md:inline text-sm font-medium">Admin Disnaker</span>
+                            <i className={`ri-arrow-down-s-line text-gray-500 text-sm transition-transform ${dropdownOpen ? 'rotate-180' : ''}`}></i>
+                        </button>
+
+                        {dropdownOpen && (
+                            <ul className="absolute right-0 mt-2 w-48 bg-white border border-[#e5e7eb] rounded-lg shadow-lg py-1 z-50">
+                                <li>
+                                    <a href="#" className="flex items-center gap-3 px-4 py-2 hover:bg-[#f9fafb] text-[#6b7280] text-sm">
+                                        <i className="ri-user-settings-line"></i> Profil Saya
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" className="flex items-center gap-3 px-4 py-2 hover:bg-[#f9fafb] text-[#6b7280] text-sm">
+                                        <i className="ri-settings-2-line"></i> Pengaturan
+                                    </a>
+                                </li>
+                                <hr className="my-1 border-[#e5e7eb]" />
+                                <li>
+                                    <a href="/logout" className="flex items-center gap-3 px-4 py-2 hover:bg-red-50 text-red-600 text-sm">
+                                        <i className="ri-logout-box-r-line"></i> Keluar
+                                    </a>
+                                </li>
+                            </ul>
+                        )}
+                    </div>
+                </div>
+            </header>
+
+        </>
     );
 }
