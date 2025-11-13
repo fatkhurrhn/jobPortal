@@ -67,11 +67,23 @@ export default function Dashboard() {
         maintainAspectRatio: false,
         plugins: {
             legend: { display: false },
-            title: { display: true, text: 'Jumlah Pendaftar Pencari Kerja (2025)' },
+            title: {
+                display: true,
+                text: 'Jumlah Pendaftar Pencari Kerja (2025)',
+                font: { size: 14, weight: 'bold' },
+                color: '#2a436c'
+            },
         },
         scales: {
-            y: { beginAtZero: true, grid: { color: '#e5e7eb' } },
-            x: { grid: { display: false } },
+            y: {
+                beginAtZero: true,
+                grid: { color: '#e5e7eb' },
+                ticks: { color: '#6b7280' }
+            },
+            x: {
+                grid: { display: false },
+                ticks: { color: '#6b7280' }
+            },
         },
     };
 
@@ -89,8 +101,16 @@ export default function Dashboard() {
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
-            legend: { position: 'bottom' },
-            title: { display: true, text: 'Distribusi Penempatan Kerja per Sektor' },
+            legend: {
+                position: 'bottom',
+                labels: { color: '#6b7280' }
+            },
+            title: {
+                display: true,
+                text: 'Distribusi Penempatan Kerja per Sektor',
+                font: { size: 14, weight: 'bold' },
+                color: '#2a436c'
+            },
         },
     };
 
@@ -114,11 +134,26 @@ export default function Dashboard() {
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
-            title: { display: true, text: 'Distribusi Pencari Kerja Berdasarkan Usia & Gender' },
+            legend: {
+                labels: { color: '#6b7280' }
+            },
+            title: {
+                display: true,
+                text: 'Distribusi Pencari Kerja Berdasarkan Usia & Gender',
+                font: { size: 14, weight: 'bold' },
+                color: '#2a436c'
+            },
         },
         scales: {
-            y: { beginAtZero: true, grid: { color: '#e5e7eb' } },
-            x: { grid: { display: false } },
+            y: {
+                beginAtZero: true,
+                grid: { color: '#e5e7eb' },
+                ticks: { color: '#6b7280' }
+            },
+            x: {
+                grid: { display: false },
+                ticks: { color: '#6b7280' }
+            },
         },
     };
 
@@ -147,7 +182,13 @@ export default function Dashboard() {
                     }`}
             >
                 <div className="px-4 sm:px-6">
-                    <h1 className="text-xl sm:text-2xl font-bold text-[#2a436c] mb-6">Dashboard Overview</h1>
+                    {/* Header */}
+                    <div className="mb-6">
+                        <h1 className="text-xl sm:text-2xl font-bold text-[#2a436c]">Dashboard Overview</h1>
+                        <p className="text-sm text-[#6b7280] mt-1">
+                            Ringkasan statistik dan aktivitas terkini sistem
+                        </p>
+                    </div>
 
                     {/* Stats Cards */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-8">
@@ -158,88 +199,116 @@ export default function Dashboard() {
                         <StatCard title="Permohonan Baru" value={stats.newApplications} change="Hari ini" color="#cbdde9" icon="ri-file-list-line" />
                     </div>
 
-                    {/* Charts Row 1 */}
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-                        <div className="bg-white p-4 rounded-xl shadow-md border border-[#e5e7eb] h-80">
-                            <Bar data={barData} options={barOptions} />
+                    {/* Charts Row */}
+                    <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 mb-8">
+                        {/* Pendaftar Pencari Kerja */}
+                        <div className="bg-white rounded-xl shadow-md border border-[#e5e7eb] p-6">
+                            <div className="h-80">
+                                <Bar data={barData} options={barOptions} />
+                            </div>
                         </div>
-                        <div className="bg-white p-4 rounded-xl shadow-md border border-[#e5e7eb] h-80 flex items-center justify-center">
-                            <Pie data={sectorData} options={pieOptions} />
+
+                        {/* Distribusi Sektor */}
+                        <div className="bg-white rounded-xl shadow-md border border-[#e5e7eb] p-6">
+                            <div className="h-80">
+                                <Pie data={sectorData} options={pieOptions} />
+                            </div>
                         </div>
                     </div>
 
                     {/* Demographics Chart */}
-                    <div className="bg-white p-6 rounded-xl shadow-md border border-[#e5e7eb] mb-8 h-80">
-                        <Bar data={demographicsData} options={demographicOptions} />
-                    </div>
-
-                    {/* Expiring Jobs */}
-                    <div className="bg-white p-6 rounded-xl shadow-md border border-[#e5e7eb] mb-8 overflow-hidden">
-                        <h2 className="text-lg font-semibold text-[#2a436c] mb-4">Lowongan Hampir Tutup</h2>
-                        <div className="overflow-x-auto">
-                            <table className="w-full text-left text-sm min-w-max">
-                                <thead>
-                                    <tr className="border-b border-[#e5e7eb]">
-                                        <th className="pb-3 font-medium text-[#6b7280]">No</th>
-                                        <th className="pb-3 font-medium text-[#6b7280]">Perusahaan</th>
-                                        <th className="pb-3 font-medium text-[#6b7280]">Posisi</th>
-                                        <th className="pb-3 font-medium text-[#6b7280]">Deadline</th>
-                                        <th className="pb-3 font-medium text-[#6b7280]">Pelamar</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {expiringJobs.map((job) => (
-                                        <tr key={job.id} className="border-b hover:bg-[#f9fafb]">
-                                            <td className="py-3">{job.id}</td>
-                                            <td className="py-3 font-medium">{job.company}</td>
-                                            <td className="py-3">{job.role}</td>
-                                            <td className="py-3">
-                                                <span className="bg-red-100 text-red-800 text-xs px-2 py-1 rounded-full">{job.deadline}</span>
-                                            </td>
-                                            <td className="py-3">{job.applicants}</td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
+                    <div className="bg-white rounded-xl shadow-md border border-[#e5e7eb] p-6 mb-8">
+                        <div className="h-80">
+                            <Bar data={demographicsData} options={demographicOptions} />
                         </div>
                     </div>
 
-                    {/* Recent Trainings */}
-                    <div className="bg-white p-6 rounded-xl shadow-md border border-[#e5e7eb] mb-8">
-                        <h2 className="text-lg font-semibold text-[#2a436c] mb-4">Pelatihan Terdaftar</h2>
-                        <div className="space-y-4">
-                            {recentTrainings.map((t) => (
-                                <div
-                                    key={t.id}
-                                    className="flex flex-col sm:flex-row sm:items-center justify-between p-4 border border-[#e5e7eb] rounded-lg bg-[#f9fafb]"
-                                >
-                                    <div>
-                                        <p className="font-medium">{t.name}</p>
-                                        <p className="text-sm text-[#6b7280]">Peserta: {t.peserta} orang</p>
+                    {/* Bottom Section - Tables */}
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                        {/* Expiring Jobs */}
+                        <div className="bg-white rounded-xl shadow-md border border-[#e5e7eb] p-6">
+                            <div className="flex items-center justify-between mb-4">
+                                <h2 className="text-lg font-semibold text-[#2a436c]">Lowongan Hampir Tutup</h2>
+                                <span className="text-xs text-[#6b7280] bg-[#f9fafb] px-2 py-1 rounded">
+                                    {expiringJobs.length} lowongan
+                                </span>
+                            </div>
+                            <div className="space-y-3">
+                                {expiringJobs.map((job) => (
+                                    <div key={job.id} className="flex items-center justify-between p-3 border border-[#e5e7eb] rounded-lg hover:bg-[#f9fafb] transition-colors">
+                                        <div className="flex-1 min-w-0">
+                                            <p className="font-medium text-[#2a436c] truncate">{job.role}</p>
+                                            <p className="text-sm text-[#6b7280] truncate">{job.company}</p>
+                                        </div>
+                                        <div className="flex items-center gap-4 text-right">
+                                            <div>
+                                                <p className="text-sm font-medium text-[#2a436c]">{job.applicants}</p>
+                                                <p className="text-xs text-[#6b7280]">pelamar</p>
+                                            </div>
+                                            <span className="bg-red-100 text-red-800 text-xs px-2 py-1 rounded-full whitespace-nowrap">
+                                                {job.deadline}
+                                            </span>
+                                        </div>
                                     </div>
-                                    <span
-                                        className={`mt-2 sm:mt-0 inline-block px-3 py-1 text-xs font-semibold rounded-full ${t.status === 'Berlangsung'
-                                                ? 'bg-blue-100 text-blue-800'
-                                                : t.status === 'Pendaftaran'
-                                                    ? 'bg-green-100 text-green-800'
-                                                    : 'bg-gray-100 text-gray-800'
-                                            }`}
-                                    >
-                                        {t.status}
-                                    </span>
-                                </div>
-                            ))}
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Recent Trainings */}
+                        <div className="bg-white rounded-xl shadow-md border border-[#e5e7eb] p-6">
+                            <div className="flex items-center justify-between mb-4">
+                                <h2 className="text-lg font-semibold text-[#2a436c]">Pelatihan Terdaftar</h2>
+                                <span className="text-xs text-[#6b7280] bg-[#f9fafb] px-2 py-1 rounded">
+                                    {recentTrainings.length} pelatihan
+                                </span>
+                            </div>
+                            <div className="space-y-3">
+                                {recentTrainings.map((t) => (
+                                    <div key={t.id} className="flex items-center justify-between p-3 border border-[#e5e7eb] rounded-lg hover:bg-[#f9fafb] transition-colors">
+                                        <div className="flex-1 min-w-0">
+                                            <p className="font-medium text-[#2a436c] truncate">{t.name}</p>
+                                            <p className="text-sm text-[#6b7280]">Peserta: {t.peserta} orang</p>
+                                        </div>
+                                        <span
+                                            className={`px-3 py-1 text-xs font-semibold rounded-full whitespace-nowrap ${t.status === 'Berlangsung'
+                                                    ? 'bg-blue-100 text-blue-800'
+                                                    : t.status === 'Pendaftaran'
+                                                        ? 'bg-green-100 text-green-800'
+                                                        : 'bg-gray-100 text-gray-800'
+                                                }`}
+                                        >
+                                            {t.status}
+                                        </span>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
                     </div>
 
                     {/* Insight */}
-                    <div className="bg-gradient-to-r from-[#355485] to-[#4f90c6] text-white p-5 rounded-xl shadow-md mb-6">
-                        <h3 className="text-base sm:text-lg font-semibold">🔍 Insight Minggu Ini</h3>
-                        <ul className="mt-2 text-sm space-y-1 opacity-90">
-                            <li>• Pelamar IT naik 18% — butuh lebih banyak pelatihan coding.</li>
-                            <li>• 7 lowongan besar akan tutup dalam 5 hari — dorong promosi.</li>
-                            <li>• Partisipasi perempuan di pelatihan meningkat 12%.</li>
-                        </ul>
+                    <div className="bg-gradient-to-r from-[#355485] to-[#4f90c6] text-white p-6 rounded-xl shadow-md">
+                        <div className="flex items-start gap-3">
+                            <div className="p-2 bg-white/20 rounded-lg">
+                                <i className="ri-lightbulb-line text-lg"></i>
+                            </div>
+                            <div className="flex-1">
+                                <h3 className="text-lg font-semibold mb-2">Insight Minggu Ini</h3>
+                                <ul className="text-sm space-y-1 opacity-90">
+                                    <li className="flex items-center gap-2">
+                                        <div className="w-1 h-1 bg-white rounded-full"></div>
+                                        <span>Pelamar IT naik 18% — butuh lebih banyak pelatihan coding.</span>
+                                    </li>
+                                    <li className="flex items-center gap-2">
+                                        <div className="w-1 h-1 bg-white rounded-full"></div>
+                                        <span>7 lowongan besar akan tutup dalam 5 hari — dorong promosi.</span>
+                                    </li>
+                                    <li className="flex items-center gap-2">
+                                        <div className="w-1 h-1 bg-white rounded-full"></div>
+                                        <span>Partisipasi perempuan di pelatihan meningkat 12%.</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </main>
