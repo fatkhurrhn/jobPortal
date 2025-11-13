@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Dashboard from './pages/dashboard/Dashboard';
-import HomePage from './pages/HomePage';
 import Pencaker from './pages/dashboard/Pencaker';
 import Perusahaan from './pages/dashboard/Perusahaan';
 import Lowongan from './pages/dashboard/Lowongan';
@@ -11,11 +10,12 @@ import Laporan from './pages/dashboard/Laporan';
 import Konten from './pages/dashboard/Konten';
 import Users from './pages/dashboard/Users';
 import Pengaturan from './pages/dashboard/Pengaturan';
+import Login from './pages/auth/Login';
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/dashboard/pencaker" element={<Pencaker />} />
         <Route path="/dashboard/perusahaan" element={<Perusahaan />} />
