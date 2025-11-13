@@ -80,13 +80,13 @@ export default function Layout() {
                 </nav>
 
                 {/* Toggle Button (Desktop Only) */}
-                <button
+                {/* <button
                     onClick={toggleSidebar}
                     className="hidden lg:flex m-4 mb-6 items-center justify-center w-8 h-8 bg-[#2a436c] hover:bg-[#4f90c6] rounded-full text-sm transition-colors"
                     aria-label={isMinimized ? 'Expand sidebar' : 'Minimize sidebar'}
                 >
                     <i className={`ri-arrow-${isMinimized ? 'right' : 'left'}-s-line`}></i>
-                </button>
+                </button> */}
             </aside>
 
             {/* Header */}
