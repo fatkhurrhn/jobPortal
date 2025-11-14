@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import AutoToTop from './components/AutoToTop';
 import Dashboard from './pages/dashboard/Dashboard';
 import Pencaker from './pages/dashboard/Pencaker';
 import Perusahaan from './pages/dashboard/Perusahaan';
@@ -15,6 +16,7 @@ import Profile from './pages/dashboard/Profile';
 function App() {
   return (
     <Router>
+      <AutoToTop/>
       <Routes>
         <Route path="/" element={<Navigate to="/login" />} />
 
