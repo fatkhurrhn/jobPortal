@@ -49,7 +49,7 @@ export default function Layout() {
                         </div>
                     ) : (
                         <h1 className="text-xl font-bold">
-                            JobPortal<span className="font-normal text-sm">Admin</span>
+                            DISNAKER<span className="font-normal text-sm">KabPaser</span>
                         </h1>
                     )}
                 </div>
@@ -148,7 +148,7 @@ export default function Layout() {
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link to="/dashboard/settings" className="flex items-center gap-3 px-4 py-2 hover:bg-[#f9fafb] text-[#6b7280] text-sm">
+                                    <Link to="/dashboard/pengaturan" className="flex items-center gap-3 px-4 py-2 hover:bg-[#f9fafb] text-[#6b7280] text-sm">
                                         <i className="ri-settings-2-line"></i> Pengaturan
                                     </Link>
                                 </li>

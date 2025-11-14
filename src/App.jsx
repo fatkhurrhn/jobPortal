@@ -11,6 +11,7 @@ import Konten from './pages/dashboard/Konten';
 import Users from './pages/dashboard/Users';
 import Pengaturan from './pages/dashboard/Pengaturan';
 import Login from './pages/auth/Login';
+import Profile from './pages/dashboard/Profile';
 function App() {
   return (
     <Router>
@@ -18,6 +19,7 @@ function App() {
         <Route path="/" element={<Navigate to="/login" />} />
 
         <Route path="/login" element={<Login />} />
+        <Route path="/dashboard/profile" element={<Profile />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/dashboard/pencaker" element={<Pencaker />} />
         <Route path="/dashboard/perusahaan" element={<Perusahaan />} />
