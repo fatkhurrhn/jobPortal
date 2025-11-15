@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 export default function HomePage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [locationFilter, setLocationFilter] = useState('');
-  const [jobTypeFilter, setJobTypeFilter] = useState('');
+   const [activeFaq, setActiveFaq] = useState(null);
 
   const latestJobs = [
     {
       id: 1,
       posisi: 'Frontend Developer',
       perusahaan: 'PT Solusi Digital',
-      logo: 'https://via.placeholder.com/60/355485/FFFFFF?text=SD',
-      lokasi: 'Bandung',
+      logo: 'https://picsum.photos/200',
+      lokasi: 'kaltim',
       tipe: 'Full-time',
       sektor: 'Teknologi',
       pendidikan: 'S1',
@@ -21,7 +23,7 @@ export default function HomePage() {
       id: 2,
       posisi: 'Operator Produksi',
       perusahaan: 'CV Makmur Abadi',
-      logo: 'https://via.placeholder.com/60/4f90c6/FFFFFF?text=MA',
+      logo: 'https://picsum.photos/200',
       lokasi: 'Bekasi',
       tipe: 'Shift',
       sektor: 'Manufaktur',
@@ -32,7 +34,7 @@ export default function HomePage() {
       id: 3,
       posisi: 'Petugas Lapangan',
       perusahaan: 'UD Tani Maju',
-      logo: 'https://via.placeholder.com/60/90b6d5/FFFFFF?text=TM',
+      logo: 'https://picsum.photos/200',
       lokasi: 'Temanggung',
       tipe: 'Kontrak',
       sektor: 'Pertanian',
@@ -46,13 +48,22 @@ export default function HomePage() {
       id: 1,
       judul: 'Pelatihan Gratis Bidang Digital Dimulai Bulan Ini',
       tanggal: '10 Nov 2025',
-      ringkasan: 'Disnaker membuka pendaftaran pelatihan web development, UI/UX, dan digital marketing...',
+      ringkasan: 'Disnaker membuka pendaftaran pelatihan web development, UI/UX, dan digital marketing untuk 500 peserta.',
+      gambar: 'https://picsum.photos/200',
     },
     {
       id: 2,
-      judul: 'Job Fair Kota Bandung Hadirkan 50+ Perusahaan',
+      judul: 'Job Fair Kota kaltim Hadirkan 50+ Perusahaan',
       tanggal: '8 Nov 2025',
-      ringkasan: 'Event bursa kerja akan digelar pada 15-17 November di Gedung Sabilulungan.',
+      ringkasan: 'Event bursa kerja akan digelar pada 15-17 November di Gedung Sabilulungan dengan 2,000 lowongan.',
+      gambar: 'https://picsum.photos/200',
+    },
+    {
+      id: 2,
+      judul: 'Kerja Mudah Lewat Orang Dalam',
+      tanggal: '8 Nov 2025',
+      ringkasan: 'Event bursa kerja akan digelar pada 15-17 November di Gedung Sabilulungan dengan 2,000 lowongan.',
+      gambar: 'https://picsum.photos/200',
     },
   ];
 
@@ -65,17 +76,25 @@ export default function HomePage() {
 
   const faqs = [
     {
+      id: 1,
       q: 'Apakah semua lowongan diverifikasi?',
-      a: 'Ya, semua lowongan diverifikasi oleh tim Disnaker untuk memastikan keamanan dan keaslian informasi.',
+      a: 'Ya, semua lowongan diverifikasi oleh tim Disnaker untuk memastikan keamanan dan keaslian informasi. Perusahaan harus melampirkan dokumen legal sebelum lowongan dipublikasikan.'
     },
     {
+      id: 2,
       q: 'Bagaimana cara mendaftar sebagai pencari kerja?',
-      a: 'Kamu bisa mendaftar online melalui menu "Daftar Pencaker" atau datang langsung ke kantor Disnaker terdekat.',
+      a: 'Anda bisa mendaftar online melalui menu "Daftar Pencaker" dengan mengisi formulir online atau datang langsung ke kantor Disnaker terdekat dengan membawa KTP, ijazah, dan pas foto 3x4.'
     },
     {
+      id: 3,
       q: 'Apakah layanan ini gratis?',
-      a: 'Ya, seluruh layanan penempatan tenaga kerja, pelatihan, dan pendaftaran bersifat GRATIS.',
+      a: 'Ya, seluruh layanan penempatan tenaga kerja, pelatihan BLK, dan pendaftaran pencari kerja bersifat GRATIS tanpa dipungut biaya apapun.'
     },
+    {
+      id: 4,
+      q: 'Berapa lama proses verifikasi Kartu Kuning?',
+      a: 'Proses verifikasi Kartu Kuning (AK1) membutuhkan waktu 3-5 hari kerja setelah dokumen lengkap diterima. Status dapat dipantau melalui akun online Anda.'
+    }
   ];
 
   const testimonials = [
@@ -84,8 +103,8 @@ export default function HomePage() {
       nama: 'Rina Sari',
       pekerjaan: 'Web Developer',
       perusahaan: 'PT Tech Solution',
-      testimoni: 'Berhasil mendapatkan pekerjaan impian hanya dalam 2 minggu setelah mendaftar di Disnaker Bandung.',
-      foto: 'https://via.placeholder.com/80/355485/FFFFFF?text=RS',
+      testimoni: 'Berhasil mendapatkan pekerjaan impian hanya dalam 2 minggu setelah mendaftar di Disnaker kaltim.',
+      foto: 'https://picsum.photos/200',
     },
     {
       id: 2,
@@ -93,58 +112,24 @@ export default function HomePage() {
       pekerjaan: 'Teknisi Elektronik',
       perusahaan: 'CV Elektro Mandiri',
       testimoni: 'Pelatihan dari BLK sangat membantu saya meningkatkan skill dan mendapatkan pekerjaan tetap.',
-      foto: 'https://via.placeholder.com/80/4f90c6/FFFFFF?text=AF',
+      foto: 'https://picsum.photos/200',
     },
   ];
 
   const partners = [
-    { id: 1, name: 'PT Astra International', logo: 'https://via.placeholder.com/120x60/355485/FFFFFF?text=Astra' },
-    { id: 2, name: 'Bank BJB', logo: 'https://via.placeholder.com/120x60/4f90c6/FFFFFF?text=Bank+BJB' },
-    { id: 3, name: 'PT Unilever', logo: 'https://via.placeholder.com/120x60/90b6d5/FFFFFF?text=Unilever' },
-    { id: 4, name: 'PT Telkom Indonesia', logo: 'https://via.placeholder.com/120x60/355485/FFFFFF?text=Telkom' },
+    { id: 1, name: 'PT Astra International', logo: 'https://picsum.photos/200' },
+    { id: 2, name: 'Bank BJB', logo: 'https://picsum.photos/200' },
+    { id: 3, name: 'PT Unilever', logo: 'https://picsum.photos/200' },
+    { id: 4, name: 'PT Telkom Indonesia', logo: 'https://picsum.photos/200' },
   ];
+
+  const toggleFaq = (id) => {
+    setActiveFaq(activeFaq === id ? null : id);
+  };
 
   return (
     <div className="min-h-screen bg-white">
-      <nav className="bg-white shadow-lg border-b border-gray-200 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center">
-              <div className="flex-shrink-0 flex items-center gap-3">
-                <div className="w-10 h-10 bg-[#355485] rounded-lg flex items-center justify-center">
-                  <i className="ri-building-line text-white text-lg"></i>
-                </div>
-                <div>
-                  <h1 className="text-xl font-bold text-[#2a436c]">DISNAKER</h1>
-                  <p className="text-xs text-gray-500 -mt-1">Kota Bandung</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="hidden md:block">
-              <div className="ml-10 flex items-baseline space-x-8">
-                <a href="#" className="text-[#2a436c] hover:text-[#355485] font-medium transition-colors">Beranda</a>
-                <a href="#" className="text-gray-600 hover:text-[#2a436c] transition-colors">Lowongan</a>
-                <a href="#" className="text-gray-600 hover:text-[#2a436c] transition-colors">Pelatihan</a>
-                <a href="#" className="text-gray-600 hover:text-[#2a436c] transition-colors">Informasi</a>
-                <a href="#" className="text-gray-600 hover:text-[#2a436c] transition-colors">Pengaduan</a>
-              </div>
-            </div>
-
-            <div className="hidden md:flex items-center gap-4">
-              <a href="/login" className="text-[#2a436c] hover:text-[#355485] font-medium transition-colors">Masuk</a>
-              <a href="/register" className="bg-[#355485] hover:bg-[#2a436c] text-white px-4 py-2 rounded-lg transition-colors">Daftar</a>
-            </div>
-
-            <div className="md:hidden">
-              <button className="text-[#2a436c] p-2">
-                <i className="ri-menu-line text-xl"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-      </nav>
-
+      <Navbar/>
       <section className="relative bg-gradient-to-r from-[#355485] to-[#4f90c6] text-white py-20 px-4 sm:px-6 overflow-hidden">
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&auto=format&fit=crop&w=1974&q=80')] bg-cover bg-center mix-blend-overlay"></div>
@@ -153,7 +138,7 @@ export default function HomePage() {
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 leading-tight">
             Portal Layanan Tenaga Kerja
             <span className="block text-blue-100 text-xl md:text-2xl font-normal mt-2">
-              Dinas Tenaga Kerja Kota Bandung
+              Dinas Tenaga Kerja Kota kaltim
             </span>
           </h1>
           <p className="text-lg md:text-xl opacity-90 mb-8 max-w-3xl mx-auto leading-relaxed">
@@ -200,7 +185,7 @@ export default function HomePage() {
                 className="px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#4f90c6] focus:border-transparent transition-all"
               >
                 <option value="">Semua Lokasi</option>
-                <option value="Bandung">Bandung</option>
+                <option value="kaltim">kaltim</option>
                 <option value="Bekasi">Bekasi</option>
                 <option value="Temanggung">Temanggung</option>
               </select>
@@ -213,7 +198,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-gray-100">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 text-center">
           <h2 className="text-2xl md:text-3xl font-bold text-[#2a436c] mb-12">Statistik Layanan Disnaker</h2>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
@@ -300,23 +285,24 @@ export default function HomePage() {
       <section className="py-16 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <h2 className="text-2xl md:text-3xl font-bold text-[#2a436c] mb-8">Berita & Informasi</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {newsList.map((news) => (
-              <div
-                key={news.id}
-                className="bg-gradient-to-r from-gray-50 to-white p-6 rounded-2xl border border-gray-200 hover:shadow-lg transition-all group"
-              >
-                <div className="flex items-start gap-4">
-                  <div className="w-3 bg-gradient-to-b from-[#355485] to-[#4f90c6] rounded-full flex-shrink-0"></div>
-                  <div className="flex-1">
-                    <h3 className="font-bold text-[#2a436c] text-lg group-hover:text-[#355485] transition-colors mb-2">
-                      {news.judul}
-                    </h3>
-                    <p className="text-gray-600 mb-3 leading-relaxed">{news.ringkasan}</p>
+              <div key={news.id} className="bg-white rounded-2xl shadow-lg hover:shadow-xl border border-gray-200 overflow-hidden transition-all duration-300 transform hover:-translate-y-1">
+                <img src={news.gambar} alt={news.judul} className="w-full h-48 object-cover" />
+                <div className="p-6">
+                  <h3 className="font-bold text-[#2a436c] text-xl mb-3 hover:text-[#355485] transition-colors">
+                    {news.judul}
+                  </h3>
+                  <p className="text-gray-600 mb-4 leading-relaxed">{news.ringkasan}</p>
+                  <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2 text-sm text-gray-500">
                       <i className="ri-calendar-line"></i>
                       <span>{news.tanggal}</span>
                     </div>
+                    <button className="text-[#355485] hover:text-[#2a436c] font-medium flex items-center gap-1 transition-colors">
+                      Baca Selengkapnya
+                      <i className="ri-arrow-right-line"></i>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -381,7 +367,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="py-16 bg-gray-200">
+      <section className="py-16 bg-gray-100">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
             <h2 className="text-2xl md:text-3xl font-bold text-[#2a436c] mb-4">Perusahaan Mitra</h2>
@@ -397,30 +383,39 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="py-16 bg-gray-50">
+      <section className="py-20 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
-            <h2 className="text-2xl md:text-3xl font-bold text-[#2a436c] mb-4">Pertanyaan Umum</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">Temukan jawaban untuk pertanyaan yang sering diajukan tentang layanan kami</p>
+            <h2 className="text-3xl font-bold text-[#2a436c] mb-4">Pertanyaan yang Sering Diajukan</h2>
+            <p className="text-gray-600 text-lg">Temukan jawaban untuk pertanyaan umum seputar layanan Disnaker</p>
           </div>
+
           <div className="space-y-4">
-            {faqs.map((faq, idx) => (
-              <div
-                key={idx}
-                className="bg-white p-6 rounded-2xl shadow-sm border border-gray-200 hover:shadow-md transition-all"
-              >
-                <h3 className="font-semibold text-[#2a436c] text-lg mb-3 flex items-center gap-3">
-                  <i className="ri-question-line text-[#4f90c6]"></i>
-                  {faq.q}
-                </h3>
-                <p className="text-gray-600 leading-relaxed pl-9">{faq.a}</p>
+            {faqs.map((faq) => (
+              <div key={faq.id} className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden transition-all duration-300">
+                <button
+                  onClick={() => toggleFaq(faq.id)}
+                  className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors"
+                >
+                  <h3 className="font-semibold text-[#2a436c] text-lg flex items-center gap-3">
+                    <i className="ri-question-line text-[#4f90c6]"></i>
+                    {faq.q}
+                  </h3>
+                  <i className={`ri-arrow-down-s-line text-[#4f90c6] text-xl transition-transform duration-300 ${activeFaq === faq.id ? 'rotate-180' : ''
+                    }`}></i>
+                </button>
+
+                <div className={`px-6 transition-all duration-300 ${activeFaq === faq.id ? 'pb-4 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'
+                  }`}>
+                  <p className="text-gray-600 leading-relaxed pl-9">{faq.a}</p>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-gray-100">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
           <div className="bg-gradient-to-r from-gray-50 to-white p-8 md:p-12 rounded-3xl border border-gray-200">
             <h2 className="text-2xl md:text-3xl font-bold text-[#2a436c] mb-4">Siap Mendapatkan Pekerjaan Impian?</h2>
@@ -459,11 +454,11 @@ export default function HomePage() {
                 </div>
                 <div className="flex items-center gap-3">
                   <i className="ri-mail-line text-[#4f90c6]"></i>
-                  <span>disnaker@bandungkota.go.id</span>
+                  <span>disnaker@kaltim.go.id</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <i className="ri-map-pin-line text-[#4f90c6]"></i>
-                  <span>Jl. Merdeka No. 123, Bandung</span>
+                  <span>Jl. Merdeka No. 123, kaltim</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <i className="ri-time-line text-[#4f90c6]"></i>
@@ -495,64 +490,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <footer className="bg-[#2a436c] text-white pt-12 pb-8">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-            <div>
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
-                  <i className="ri-building-line text-white text-lg"></i>
-                </div>
-                <div>
-                  <h4 className="font-bold text-lg">DISNAKER</h4>
-                  <p className="text-xs text-gray-300">Kota Bandung</p>
-                </div>
-              </div>
-              <p className="text-sm text-gray-300 leading-relaxed">
-                Dinas Tenaga Kerja Kota Bandung
-                <br />
-                Jl. Merdeka No. 123, Bandung
-                <br />
-                Jawa Barat, Indonesia
-              </p>
-            </div>
-
-            {[
-              {
-                title: 'Navigasi',
-                links: ['Beranda', 'Tentang Kami', 'Layanan', 'Kontak']
-              },
-              {
-                title: 'Layanan',
-                links: ['Lowongan Kerja', 'Pelatihan BLK', 'Kartu Kuning (AK1)', 'Pengaduan']
-              },
-              {
-                title: 'Legal',
-                links: ['Kebijakan Privasi', 'Syarat & Ketentuan', 'Peta Situs']
-              }
-            ].map((section, idx) => (
-              <div key={idx}>
-                <h5 className="font-semibold mb-4 text-white">{section.title}</h5>
-                <ul className="space-y-2">
-                  {section.links.map((link, linkIdx) => (
-                    <li key={linkIdx}>
-                      <a href="#" className="text-gray-300 hover:text-white text-sm transition-colors">
-                        {link}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-
-          <div className="pt-8 border-t border-blue-400/30 text-center">
-            <p className="text-sm text-gray-400">
-              &copy; 2025 Dinas Tenaga Kerja Kota Bandung. Hak Cipta Dilindungi.
-            </p>
-          </div>
-        </div>
-      </footer>
+      <Footer/>
     </div>
   );
 }
