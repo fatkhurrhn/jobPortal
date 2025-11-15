@@ -14,6 +14,7 @@ import Pengaturan from './pages/dashboard/Pengaturan';
 import Login from './pages/auth/Login';
 import Profile from './pages/dashboard/Profile';
 import HomePage from './pages/HomePage';
+import Try from './pages/Try';
 function App() {
   return (
     <Router>
@@ -22,6 +23,7 @@ function App() {
         {/* <Route path="/" element={<Navigate to="/login" />} /> */}
 
         <Route path="/" element={<HomePage />} />
+        <Route path="/try" element={<Try />} />
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard/profile" element={<Profile />} />
         <Route path="/dashboard" element={<Dashboard />} />
