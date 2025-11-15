@@ -12,7 +12,6 @@ import {
     Legend,
 } from 'chart.js';
 
-// Register Chart Components
 ChartJS.register(CategoryScale, LinearScale, BarElement, ArcElement, Title, Tooltip, Legend);
 
 export default function Laporan() {
@@ -36,7 +35,6 @@ export default function Laporan() {
     const toggleSidebar = () => setIsMinimized((prev) => !prev);
     const closeMobileSidebar = () => setIsMobileOpen(false);
 
-    // Dummy Data Statistik
     const stats = {
         totalPencaker: 14_230,
         totalPerusahaan: 345,
@@ -46,7 +44,6 @@ export default function Laporan() {
         pengaduanSelesai: 189,
     };
 
-    // Data Grafik: Pendaftaran Bulanan (2025)
     const monthlyData = {
         labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
         data: [980, 1100, 1050, 1200, 1350, 1300, 1400, 1500, 1450, 1600, 1550, 1620],
@@ -90,7 +87,6 @@ export default function Laporan() {
         },
     };
 
-    // Data Grafik: Penempatan per Sektor
     const sectorData = {
         labels: ['IT & Digital', 'Manufaktur', 'Pertanian', 'Jasa', 'Konstruksi'],
         datasets: [
@@ -118,7 +114,6 @@ export default function Laporan() {
         },
     };
 
-    // Fungsi export kosong (nanti integrasi library)
     const handleExportPDF = () => {
         alert('Fitur export PDF akan segera tersedia. (Bisa pakai jsPDF + html2canvas)');
     };
@@ -147,7 +142,6 @@ export default function Laporan() {
                 id="print-area"
             >
                 <div className="px-4 sm:px-6">
-                    {/* Header */}
                     <div className="mb-6">
                         <h1 className="text-xl sm:text-2xl font-bold text-[#2a436c]">Laporan & Statistik</h1>
                         <p className="text-sm text-[#6b7280] mt-1">
@@ -155,7 +149,6 @@ export default function Laporan() {
                         </p>
                     </div>
 
-                    {/* Action Buttons */}
                     <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6 print:hidden">
                         <h2 className="text-lg font-semibold text-[#2a436c]">Rekap Laporan Ketenagakerjaan</h2>
                         <div className="flex flex-wrap gap-2">
@@ -183,14 +176,12 @@ export default function Laporan() {
                         </div>
                     </div>
 
-                    {/* Info Judul Print */}
                     <div className="hidden print:block text-center mb-6">
                         <h2 className="text-2xl font-bold text-[#2a436c]">LAPORAN KETENAGAKERJAAN</h2>
                         <p className="text-sm text-[#6b7280]">Dinas Tenaga Kerja - Periode: Januari - November 2025</p>
                         <hr className="my-4 border-[#e5e7eb]" />
                     </div>
 
-                    {/* Stats Cards */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
                         <StatCard 
                             title="Total Pencari Kerja" 
@@ -222,7 +213,6 @@ export default function Laporan() {
                         />
                     </div>
 
-                    {/* Charts Row */}
                     <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 mb-8">
                         <div className="bg-white rounded-xl shadow-md border border-[#e5e7eb] p-6">
                             <div className="h-80">
@@ -236,7 +226,6 @@ export default function Laporan() {
                         </div>
                     </div>
 
-                    {/* Additional Stats */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                         <div className="bg-white rounded-xl shadow-md border border-[#e5e7eb] p-6 text-center">
                             <div className="flex items-center justify-center gap-3 mb-3">
@@ -264,7 +253,6 @@ export default function Laporan() {
                         </div>
                     </div>
 
-                    {/* Tabel Rekap Tambahan */}
                     <div className="bg-white rounded-xl shadow-md border border-[#e5e7eb] overflow-hidden mb-8">
                         <div className="p-6 border-b border-[#e5e7eb]">
                             <h3 className="text-lg font-semibold text-[#2a436c]">Rekap Program BLK & Pengaduan</h3>
@@ -299,7 +287,6 @@ export default function Laporan() {
                         </div>
                     </div>
 
-                    {/* Kesimpulan / Insight */}
                     <div className="bg-gradient-to-r from-[#355485] to-[#4f90c6] text-white p-6 rounded-xl shadow-md mb-8">
                         <div className="flex items-start gap-3">
                             <div className="p-2 bg-white/20 rounded-lg">
@@ -329,7 +316,6 @@ export default function Laporan() {
                         </div>
                     </div>
 
-                    {/* Catatan Kaki */}
                     <div className="mt-12 print:mt-6 text-center text-xs text-[#9ca3af] print:text-sm">
                         <p>Dinas Tenaga Kerja & Transmigrasi | Jl. Merdeka No. 123, Kota Maju | Telp: (021) 12345678</p>
                         <p className="mt-1">Laporan ini dicetak otomatis oleh sistem pada tanggal {new Date().toLocaleDateString('id-ID')}</p>
@@ -340,7 +326,6 @@ export default function Laporan() {
     );
 }
 
-// StatCard Component
 function StatCard({ title, value, change, color, icon }) {
     return (
         <div className="bg-white p-4 rounded-xl shadow-md border border-[#e5e7eb] hover:shadow-lg transition-shadow">

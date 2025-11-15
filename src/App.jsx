@@ -13,13 +13,15 @@ import Users from './pages/dashboard/Users';
 import Pengaturan from './pages/dashboard/Pengaturan';
 import Login from './pages/auth/Login';
 import Profile from './pages/dashboard/Profile';
+import HomePage from './pages/HomePage';
 function App() {
   return (
     <Router>
       <AutoToTop/>
       <Routes>
-        <Route path="/" element={<Navigate to="/login" />} />
+        {/* <Route path="/" element={<Navigate to="/login" />} /> */}
 
+        <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard/profile" element={<Profile />} />
         <Route path="/dashboard" element={<Dashboard />} />

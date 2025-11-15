@@ -22,7 +22,6 @@ export default function KontenWebsite() {
   const toggleSidebar = () => setIsMinimized((prev) => !prev);
   const closeMobileSidebar = () => setIsMobileOpen(false);
 
-  // Dummy Data Berita
   const [beritaList, setBeritaList] = useState([
     {
       id: 1,
@@ -50,7 +49,6 @@ export default function KontenWebsite() {
     },
   ]);
 
-  // Dummy Data Agenda
   const [agendaList, setAgendaList] = useState([
     {
       id: 1,
@@ -74,7 +72,6 @@ export default function KontenWebsite() {
     },
   ]);
 
-  // Dummy Data Dokumen
   const [dokumenList, setDokumenList] = useState([
     {
       id: 1,
@@ -102,7 +99,6 @@ export default function KontenWebsite() {
     },
   ]);
 
-  // Dummy Data FAQ
   const [faqList, setFaqList] = useState([
     {
       id: 1,
@@ -131,13 +127,11 @@ export default function KontenWebsite() {
   const [editForm, setEditForm] = useState({});
   const [activeTab, setActiveTab] = useState('berita');
 
-  // Fungsi edit
   const handleEdit = (section, item) => {
     setEditId(`${section}-${item.id}`);
     setEditForm({ ...item });
   };
 
-  // Fungsi simpan
   const handleSave = (section, id) => {
     if (section === 'berita') {
       setBeritaList(
@@ -207,7 +201,6 @@ export default function KontenWebsite() {
           }`}
       >
         <div className="px-4 sm:px-6">
-          {/* Header */}
           <div className="mb-6">
             <h1 className="text-xl sm:text-2xl font-bold text-[#2a436c]">Manajemen Konten Website</h1>
             <p className="text-sm text-[#6b7280] mt-1">
@@ -215,7 +208,6 @@ export default function KontenWebsite() {
             </p>
           </div>
 
-          {/* Stats Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
             <StatCard
               title="Total Berita"
@@ -247,7 +239,6 @@ export default function KontenWebsite() {
             />
           </div>
 
-          {/* Tab Navigation */}
           <div className="bg-white rounded-xl shadow-md border border-[#e5e7eb] mb-6 overflow-hidden">
             <div className="flex overflow-x-auto">
               {[
@@ -271,7 +262,6 @@ export default function KontenWebsite() {
             </div>
           </div>
 
-          {/* Berita & Artikel */}
           {activeTab === 'berita' && (
             <div className="space-y-4">
               <div className="flex justify-between items-center">
@@ -359,7 +349,6 @@ export default function KontenWebsite() {
             </div>
           )}
 
-          {/* Agenda & Event */}
           {activeTab === 'agenda' && (
             <div className="space-y-4">
               <div className="flex justify-between items-center">
@@ -462,7 +451,6 @@ export default function KontenWebsite() {
             </div>
           )}
 
-          {/* Dokumen Publik */}
           {activeTab === 'dokumen' && (
             <div>
               <div className="flex justify-between items-center mb-4">
@@ -522,7 +510,6 @@ export default function KontenWebsite() {
             </div>
           )}
 
-          {/* FAQ */}
           {activeTab === 'faq' && (
             <div className="space-y-4">
               <div className="flex justify-between items-center">
@@ -612,7 +599,6 @@ export default function KontenWebsite() {
   );
 }
 
-// StatCard Component
 function StatCard({ title, value, change, color, icon }) {
   return (
     <div className="bg-white p-4 rounded-xl shadow-md border border-[#e5e7eb] hover:shadow-lg transition-shadow">

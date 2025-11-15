@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Jika pakai React Router
+import { useNavigate } from 'react-router-dom'; 
 
 export default function Login() {
     const [form, setForm] = useState({
@@ -9,7 +9,7 @@ export default function Login() {
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
 
-    const navigate = useNavigate(); // Hapus jika tidak pakai router
+    const navigate = useNavigate(); 
 
     const handleChange = (e) => {
         setForm({
@@ -23,13 +23,11 @@ export default function Login() {
         setError('');
         setLoading(true);
 
-        // Simulasi login (ganti dengan API asli nanti)
         setTimeout(() => {
             if (form.username === 'admin' && form.password === 'admin123') {
                 setLoading(false);
-                // Simpan token/session
                 localStorage.setItem('adminToken', 'dummy-jwt-token');
-                navigate('/dashboard'); // Redirect ke dashboard
+                navigate('/dashboard'); 
             } else {
                 setLoading(false);
                 setError('Username atau password salah.');
@@ -39,15 +37,12 @@ export default function Login() {
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-[#f9fafb] px-4">
-            {/* Card Login */}
             <div className="w-full max-w-md bg-white rounded-xl shadow-lg border border-[#e5e7eb] overflow-hidden">
-                {/* Header Biru */}
                 <div className="bg-[#355485] text-white py-6 px-8 text-center">
                     <h1 className="text-2xl font-bold">Admin Disnaker</h1>
                     <p className="text-sm opacity-90">Sistem Penempatan Tenaga Kerja</p>
                 </div>
 
-                {/* Form */}
                 <form onSubmit={handleSubmit} className="p-8 space-y-6">
                     {error && (
                         <div className="p-3 bg-red-50 border border-red-200 text-red-700 text-sm rounded-lg">
@@ -55,7 +50,6 @@ export default function Login() {
                         </div>
                     )}
 
-                    {/* Username */}
                     <div>
                         <label htmlFor="username" className="block text-sm font-medium text-[#6b7280] mb-2">
                             Username
@@ -72,7 +66,6 @@ export default function Login() {
                         />
                     </div>
 
-                    {/* Password */}
                     <div>
                         <label htmlFor="password" className="block text-sm font-medium text-[#6b7280] mb-2">
                             Password
@@ -89,7 +82,6 @@ export default function Login() {
                         />
                     </div>
 
-                    {/* Submit Button */}
                     <button
                         type="submit"
                         disabled={loading}
@@ -106,7 +98,6 @@ export default function Login() {
                     </button>
                 </form>
 
-                {/* Footer */}
                 <div className="bg-[#f9fafb] px-8 py-4 text-center border-t border-[#e5e7eb]">
                     <p className="text-xs text-[#9ca3af]">
                         © 2025 Dinas Tenaga Kerja. Hak Cipta Dilindungi.

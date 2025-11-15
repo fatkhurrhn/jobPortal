@@ -35,7 +35,6 @@ export default function Dashboard() {
     const toggleSidebar = () => setIsMinimized((prev) => !prev);
     const closeMobileSidebar = () => setIsMobileOpen(false);
 
-    /* ---------- DATA ---------- */
     const stats = {
         jobSeekers: 12_345,
         activeJobs: 876,
@@ -182,7 +181,6 @@ export default function Dashboard() {
                     }`}
             >
                 <div className="px-4 sm:px-6">
-                    {/* Header */}
                     <div className="mb-6">
                         <h1 className="text-xl sm:text-2xl font-bold text-[#2a436c]">Dashboard Overview</h1>
                         <p className="text-sm text-[#6b7280] mt-1">
@@ -190,7 +188,6 @@ export default function Dashboard() {
                         </p>
                     </div>
 
-                    {/* Stats Cards */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-8">
                         <StatCard title="Pencari Kerja" value={stats.jobSeekers.toLocaleString()} change="+12%" color="#4f90c6" icon="ri-user-line" />
                         <StatCard title="Lowongan Aktif" value={stats.activeJobs} change="+5" color="#355485" icon="ri-briefcase-line" />
@@ -199,16 +196,13 @@ export default function Dashboard() {
                         <StatCard title="Permohonan Baru" value={stats.newApplications} change="Hari ini" color="#cbdde9" icon="ri-file-list-line" />
                     </div>
 
-                    {/* Charts Row */}
                     <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 mb-8">
-                        {/* Pendaftar Pencari Kerja */}
                         <div className="bg-white rounded-xl shadow-md border border-[#e5e7eb] p-6">
                             <div className="h-80">
                                 <Bar data={barData} options={barOptions} />
                             </div>
                         </div>
 
-                        {/* Distribusi Sektor */}
                         <div className="bg-white rounded-xl shadow-md border border-[#e5e7eb] p-6">
                             <div className="h-80">
                                 <Pie data={sectorData} options={pieOptions} />
@@ -216,16 +210,13 @@ export default function Dashboard() {
                         </div>
                     </div>
 
-                    {/* Demographics Chart */}
                     <div className="bg-white rounded-xl shadow-md border border-[#e5e7eb] p-6 mb-8">
                         <div className="h-80">
                             <Bar data={demographicsData} options={demographicOptions} />
                         </div>
                     </div>
 
-                    {/* Bottom Section - Tables */}
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-                        {/* Expiring Jobs */}
                         <div className="bg-white rounded-xl shadow-md border border-[#e5e7eb] p-6">
                             <div className="flex items-center justify-between mb-4">
                                 <h2 className="text-lg font-semibold text-[#2a436c]">Lowongan Hampir Tutup</h2>
@@ -254,7 +245,6 @@ export default function Dashboard() {
                             </div>
                         </div>
 
-                        {/* Recent Trainings */}
                         <div className="bg-white rounded-xl shadow-md border border-[#e5e7eb] p-6">
                             <div className="flex items-center justify-between mb-4">
                                 <h2 className="text-lg font-semibold text-[#2a436c]">Pelatihan Terdaftar</h2>
@@ -285,7 +275,6 @@ export default function Dashboard() {
                         </div>
                     </div>
 
-                    {/* Insight */}
                     <div className="bg-gradient-to-r from-[#355485] to-[#4f90c6] text-white p-6 rounded-xl shadow-md">
                         <div className="flex items-start gap-3">
                             <div className="p-2 bg-white/20 rounded-lg">

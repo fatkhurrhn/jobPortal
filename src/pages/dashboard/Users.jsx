@@ -25,7 +25,6 @@ export default function UserManagement() {
   const toggleSidebar = () => setIsMinimized((prev) => !prev);
   const closeMobileSidebar = () => setIsMobileOpen(false);
 
-  // Daftar role yang tersedia
   const roles = [
     'Superadmin',
     'Admin Layanan',
@@ -34,7 +33,6 @@ export default function UserManagement() {
     'Perusahaan',
   ];
 
-  // Dummy Data Users
   const [users, setUsers] = useState([
     {
       id: 1,
@@ -85,7 +83,6 @@ export default function UserManagement() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editUser, setEditUser] = useState(null);
 
-  // Form tambah/edit
   const [form, setForm] = useState({
     nama: '',
     username: '',
@@ -96,7 +93,6 @@ export default function UserManagement() {
     status: 'Aktif',
   });
 
-  // Filter data
   const filteredUsers = users.filter(user => {
     const matchesSearch = user.nama.toLowerCase().includes(searchTerm.toLowerCase()) ||
       user.username.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -106,7 +102,6 @@ export default function UserManagement() {
     return matchesSearch && matchesRole && matchesStatus;
   });
 
-  // Buka modal tambah
   const handleAdd = () => {
     setForm({
       nama: '',
@@ -121,14 +116,12 @@ export default function UserManagement() {
     setIsModalOpen(true);
   };
 
-  // Buka modal edit
   const handleEdit = (user) => {
     setForm({ ...user });
     setEditUser(user.id);
     setIsModalOpen(true);
   };
 
-  // Simpan user baru atau update
   const handleSave = () => {
     if (!form.nama || !form.username || !form.email) {
       alert('Nama, username, dan email wajib diisi!');
@@ -152,7 +145,6 @@ export default function UserManagement() {
     setEditUser(null);
   };
 
-  // Hapus user
   const handleDelete = (id) => {
     if (confirm('Yakin ingin menghapus pengguna ini?')) {
       setUsers(users.filter((u) => u.id !== id));
@@ -194,7 +186,6 @@ export default function UserManagement() {
           }`}
       >
         <div className="px-4 sm:px-6">
-          {/* Header */}
           <div className="mb-6">
             <h1 className="text-xl sm:text-2xl font-bold text-[#2a436c]">Manajemen Pengguna & Hak Akses</h1>
             <p className="text-sm text-[#6b7280] mt-1">
@@ -202,7 +193,6 @@ export default function UserManagement() {
             </p>
           </div>
 
-          {/* Stats Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
             <StatCard
               title="Total Pengguna"
@@ -234,7 +224,6 @@ export default function UserManagement() {
             />
           </div>
 
-          {/* Filter Section */}
           <div className="bg-white p-4 rounded-xl shadow-md border border-[#e5e7eb] mb-6">
             <div className="flex flex-col sm:flex-row gap-4">
               <div className="flex-1">
@@ -280,7 +269,6 @@ export default function UserManagement() {
             </div>
           </div>
 
-          {/* Tabel Pengguna */}
           <div className="bg-white rounded-xl shadow-md border border-[#e5e7eb] overflow-hidden mb-8">
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
@@ -345,7 +333,6 @@ export default function UserManagement() {
             </div>
           </div>
 
-          {/* Empty State */}
           {filteredUsers.length === 0 && (
             <div className="text-center py-8 bg-white rounded-xl shadow-md border border-[#e5e7eb]">
               <i className="ri-user-search-line text-4xl text-gray-300 mb-3"></i>
@@ -360,7 +347,6 @@ export default function UserManagement() {
             </div>
           )}
 
-          {/* Statistik Role */}
           <div className="grid grid-cols-2 sm:grid-cols-5 gap-4">
             {roles.map((role) => {
               const count = users.filter((u) => u.role === role).length;
@@ -376,7 +362,6 @@ export default function UserManagement() {
             })}
           </div>
 
-          {/* Modal Tambah/Edit */}
           {isModalOpen && (
             <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
               <div className="bg-white rounded-xl shadow-2xl max-w-md w-full p-6">
@@ -473,7 +458,6 @@ export default function UserManagement() {
   );
 }
 
-// StatCard Component
 function StatCard({ title, value, change, color, icon }) {
   return (
     <div className="bg-white p-4 rounded-xl shadow-md border border-[#e5e7eb] hover:shadow-lg transition-shadow">

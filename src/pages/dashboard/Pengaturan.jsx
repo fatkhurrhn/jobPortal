@@ -22,7 +22,6 @@ export default function Pengaturan() {
   const toggleSidebar = () => setIsMinimized((prev) => !prev);
   const closeMobileSidebar = () => setIsMobileOpen(false);
 
-  // Data Instansi
   const [instansi, setInstansi] = useState({
     nama: 'Dinas Tenaga Kerja Kota Bandung',
     alamat: 'Jl. Merdeka No. 123, Bandung',
@@ -32,7 +31,6 @@ export default function Pengaturan() {
     logo: 'https://via.placeholder.com/120/355485/FFFFFF?text=DISNAKER',
   });
 
-  // Banner Website
   const [banner, setBanner] = useState({
     judul: 'Layanan Penempatan Tenaga Kerja Gratis',
     subjudul: 'Daftar pencari kerja, cari lowongan, dan ikuti pelatihan secara online.',
@@ -41,14 +39,12 @@ export default function Pengaturan() {
     backgroundImage: 'https://source.unsplash.com/random/1200x400/?city,office',
   });
 
-  // Mode Maintenance
   const [maintenance, setMaintenance] = useState({
     aktif: false,
     pesan: 'Sistem sedang dalam pemeliharaan. Akan kembali normal pada pukul 05.00 WIB.',
     jadwal: '15 Nov 2025, 02.00 - 05.00 WIB',
   });
 
-  // Kategori Pekerjaan
   const [kategoriPekerjaan, setKategoriPekerjaan] = useState([
     'Teknologi Informasi',
     'Manufaktur',
@@ -60,7 +56,6 @@ export default function Pengaturan() {
     'Kesehatan',
   ]);
 
-  // Master Data
   const [masterData, setMasterData] = useState({
     kecamatan: ['Bandung Wetan', 'Cicendo', 'Sukajadi', 'Bojongloa', 'Arcamanik'],
     pendidikan: ['SD', 'SMP', 'SMA/SMK', 'D1', 'D2', 'D3', 'S1', 'S2', 'S3'],
@@ -71,13 +66,11 @@ export default function Pengaturan() {
   const [tempValue, setTempValue] = useState('');
   const [activeSection, setActiveSection] = useState('instansi');
 
-  // Fungsi edit field
   const handleEdit = (field, value) => {
     setEditField(field);
     setTempValue(Array.isArray(value) ? value.join(', ') : value);
   };
 
-  // Fungsi simpan
   const handleSave = () => {
     if (editField === 'logo' || editField === 'backgroundImage') {
       if (tempValue) {
@@ -94,7 +87,6 @@ export default function Pengaturan() {
       const items = tempValue.split(',').map((i) => i.trim()).filter(Boolean);
       setKategoriPekerjaan(items);
     } else {
-      // Update instansi atau banner
       const keys = editField.split('.');
       if (keys[0] === 'instansi') {
         setInstansi({ ...instansi, [keys[1]]: tempValue });
@@ -130,7 +122,6 @@ export default function Pengaturan() {
           }`}
       >
         <div className="px-4 sm:px-6">
-          {/* Header */}
           <div className="mb-6">
             <h1 className="text-xl sm:text-2xl font-bold text-[#2a436c]">Pengaturan Sistem</h1>
             <p className="text-sm text-[#6b7280] mt-1">
@@ -138,7 +129,6 @@ export default function Pengaturan() {
             </p>
           </div>
 
-          {/* Tab Navigation */}
           <div className="bg-white rounded-xl shadow-md border border-[#e5e7eb] mb-6 overflow-hidden">
             <div className="flex overflow-x-auto">
               {sections.map((section) => (
@@ -157,7 +147,6 @@ export default function Pengaturan() {
             </div>
           </div>
 
-          {/* Profil Instansi */}
           {activeSection === 'instansi' && (
             <div className="bg-white rounded-xl shadow-md border border-[#e5e7eb] p-6">
               <h3 className="text-lg font-semibold text-[#2a436c] mb-6">Profil Instansi</h3>
@@ -214,7 +203,6 @@ export default function Pengaturan() {
                   ))}
                 </div>
 
-                {/* Logo */}
                 <div>
                   <div className="flex justify-between items-center mb-4">
                     <label className="text-sm font-medium text-[#6b7280]">Logo Instansi</label>
@@ -268,12 +256,10 @@ export default function Pengaturan() {
             </div>
           )}
 
-          {/* Banner Website */}
           {activeSection === 'banner' && (
             <div className="bg-white rounded-xl shadow-md border border-[#e5e7eb] p-6">
               <h3 className="text-lg font-semibold text-[#2a436c] mb-6">Banner Website</h3>
 
-              {/* Banner Preview */}
               <div className="mb-6">
                 <div
                   className="w-full h-48 bg-cover bg-center rounded-lg mb-4 border border-[#e5e7eb]"
@@ -315,7 +301,6 @@ export default function Pengaturan() {
                 )}
               </div>
 
-              {/* Banner Content */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {['judul', 'subjudul', 'ctaText', 'ctaLink'].map((key) => (
                   <div key={key}>
@@ -369,7 +354,6 @@ export default function Pengaturan() {
             </div>
           )}
 
-          {/* Maintenance Mode */}
           {activeSection === 'maintenance' && (
             <div className="bg-white rounded-xl shadow-md border border-[#e5e7eb] p-6">
               <h3 className="text-lg font-semibold text-[#2a436c] mb-6">Mode Pemeliharaan</h3>
@@ -445,7 +429,6 @@ export default function Pengaturan() {
             </div>
           )}
 
-          {/* Kategori Pekerjaan */}
           {activeSection === 'kategori' && (
             <div className="bg-white rounded-xl shadow-md border border-[#e5e7eb] p-6">
               <h3 className="text-lg font-semibold text-[#2a436c] mb-6">Kategori Pekerjaan</h3>
@@ -499,7 +482,6 @@ export default function Pengaturan() {
             </div>
           )}
 
-          {/* Master Data */}
           {activeSection === 'master' && (
             <div className="space-y-6">
               {Object.keys(masterData).map((key) => (

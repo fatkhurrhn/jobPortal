@@ -6,7 +6,7 @@ export default function Lowongan() {
     const [isMobileOpen, setIsMobileOpen] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
     const [statusFilter, setStatusFilter] = useState('all');
-    const [viewMode, setViewMode] = useState('grid'); // 'grid' or 'table'
+    const [viewMode, setViewMode] = useState('grid'); 
     const [showForm, setShowForm] = useState(false);
 
     useEffect(() => {
@@ -104,7 +104,6 @@ export default function Lowongan() {
         persyaratan: '',
     });
 
-    // Filter data
     const filteredLowongan = lowonganList.filter(lowongan => {
         const matchesSearch = lowongan.posisi.toLowerCase().includes(searchTerm.toLowerCase()) ||
             lowongan.perusahaan.toLowerCase().includes(searchTerm.toLowerCase());
@@ -112,7 +111,6 @@ export default function Lowongan() {
         return matchesSearch && matchesStatus;
     });
 
-    // Fungsi tambah lowongan baru
     const handleAddJob = () => {
         if (!newJob.posisi || !newJob.perusahaan || !newJob.batasAkhir) {
             alert('Posisi, perusahaan, dan batas akhir wajib diisi!');
@@ -155,8 +153,6 @@ export default function Lowongan() {
         setShowForm(false);
         alert('Lowongan berhasil diajukan, menunggu verifikasi.');
     };
-
-    // Fungsi approve/reject
     const handleApprove = (id) => {
         setLowonganList(
             lowonganList.map((job) =>
@@ -176,8 +172,6 @@ export default function Lowongan() {
             alert(`Lowongan ID ${id} ditolak.`);
         }
     };
-
-    // Hitung sisa hari
     const getRemainingDays = (endDate) => {
         const today = new Date();
         const end = new Date(endDate);
@@ -221,7 +215,6 @@ export default function Lowongan() {
                     }`}
             >
                 <div className="px-4 sm:px-6">
-                    {/* Header */}
                     <div className="mb-6">
                         <h1 className="text-xl sm:text-2xl font-bold text-[#2a436c]">Manajemen Lowongan Pekerjaan</h1>
                         <p className="text-sm text-[#6b7280] mt-1">
@@ -229,7 +222,6 @@ export default function Lowongan() {
                         </p>
                     </div>
 
-                    {/* Stats Cards */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
                         <StatCard
                             title="Total Lowongan"
@@ -261,7 +253,6 @@ export default function Lowongan() {
                         />
                     </div>
 
-                    {/* Filter Section */}
                     <div className="bg-white p-4 rounded-xl shadow-md border border-[#e5e7eb] mb-6">
                         <div className="flex flex-col sm:flex-row gap-4">
                             <div className="flex-1">
@@ -289,7 +280,6 @@ export default function Lowongan() {
                                     <option value="Ditolak">Ditolak</option>
                                 </select>
 
-                                {/* View Mode Toggle */}
                                 <div className="flex border border-[#e5e7eb] rounded-lg overflow-hidden">
                                     <button
                                         onClick={() => setViewMode('grid')}
@@ -316,7 +306,6 @@ export default function Lowongan() {
                         </div>
                     </div>
 
-                    {/* Form Input Lowongan Baru */}
                     {showForm && (
                         <div className="bg-white rounded-xl shadow-md border border-[#e5e7eb] p-6 mb-6">
                             <div className="flex items-center justify-between mb-4">
@@ -407,12 +396,10 @@ export default function Lowongan() {
                         </div>
                     )}
 
-                    {/* Grid View */}
                     {viewMode === 'grid' ? (
                         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                             {filteredLowongan.map((job) => (
                                 <div key={job.id} className="bg-white rounded-xl shadow-md border border-[#e5e7eb] overflow-hidden hover:shadow-lg transition-shadow">
-                                    {/* Job Header */}
                                     <div className="p-4 border-b border-[#e5e7eb] bg-gradient-to-r from-[#f8fafc] to-[#f1f5f9]">
                                         <div className="flex items-start justify-between mb-2">
                                             <div>
@@ -433,7 +420,6 @@ export default function Lowongan() {
                                         </div>
                                     </div>
 
-                                    {/* Job Info */}
                                     <div className="p-4 space-y-3">
                                         <div className="flex items-center justify-between text-sm">
                                             <span className="text-[#6b7280]">Tayang</span>
@@ -451,7 +437,6 @@ export default function Lowongan() {
                                         )}
                                     </div>
 
-                                    {/* Stats */}
                                     <div className="p-4 border-t border-[#e5e7eb] bg-[#f9fafb]">
                                         <div className="grid grid-cols-3 gap-2 text-center">
                                             <div>
@@ -469,7 +454,6 @@ export default function Lowongan() {
                                         </div>
                                     </div>
 
-                                    {/* Actions */}
                                     <div className="p-4 border-t border-[#e5e7eb]">
                                         <div className="flex gap-2">
                                             <button className="flex-1 px-3 py-2 text-sm bg-[#4f90c6] text-white rounded-lg hover:bg-[#355485] transition">
@@ -500,7 +484,6 @@ export default function Lowongan() {
                             ))}
                         </div>
                     ) : (
-                        /* Table View */
                         <div className="bg-white rounded-xl shadow-md border border-[#e5e7eb] overflow-hidden">
                             <div className="overflow-x-auto">
                                 <table className="w-full text-sm">
@@ -570,7 +553,6 @@ export default function Lowongan() {
                         </div>
                     )}
 
-                    {/* Empty State */}
                     {filteredLowongan.length === 0 && (
                         <div className="text-center py-8 bg-white rounded-xl shadow-md border border-[#e5e7eb]">
                             <i className="ri-briefcase-line text-4xl text-gray-300 mb-3"></i>
@@ -590,7 +572,6 @@ export default function Lowongan() {
     );
 }
 
-// StatCard Component
 function StatCard({ title, value, change, color, icon }) {
     return (
         <div className="bg-white p-4 rounded-xl shadow-md border border-[#e5e7eb] hover:shadow-lg transition-shadow">

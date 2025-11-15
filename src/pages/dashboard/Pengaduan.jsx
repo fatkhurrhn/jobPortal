@@ -6,7 +6,7 @@ export default function Pengaduan() {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
-  const [viewMode, setViewMode] = useState('grid'); // 'grid' or 'table'
+  const [viewMode, setViewMode] = useState('grid'); 
 
   useEffect(() => {
     const handleResize = () => {
@@ -69,7 +69,6 @@ export default function Pengaduan() {
 
   const [editNote, setEditNote] = useState({ id: null, value: '' });
 
-  // Filter data
   const filteredPengaduan = pengaduanList.filter(pengaduan => {
     const matchesSearch = pengaduan.pelapor.toLowerCase().includes(searchTerm.toLowerCase()) ||
       pengaduan.jenis.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -78,7 +77,6 @@ export default function Pengaduan() {
     return matchesSearch && matchesStatus;
   });
 
-  // Fungsi ubah status
   const handleUpdateStatus = (id, newStatus) => {
     setPengaduanList(
       pengaduanList.map((p) =>
@@ -87,7 +85,6 @@ export default function Pengaduan() {
     );
   };
 
-  // Fungsi edit catatan
   const handleEditNote = (id) => {
     const item = pengaduanList.find((p) => p.id === id);
     setEditNote({ id, value: item.tindakLanjut });
@@ -142,7 +139,6 @@ export default function Pengaduan() {
           }`}
       >
         <div className="px-4 sm:px-6">
-          {/* Header */}
           <div className="mb-6">
             <h1 className="text-xl sm:text-2xl font-bold text-[#2a436c]">Layanan Pengaduan Ketenagakerjaan</h1>
             <p className="text-sm text-[#6b7280] mt-1">
@@ -150,7 +146,6 @@ export default function Pengaduan() {
             </p>
           </div>
 
-          {/* Stats Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
             <StatCard
               title="Total Pengaduan"
@@ -182,7 +177,6 @@ export default function Pengaduan() {
             />
           </div>
 
-          {/* Filter Section */}
           <div className="bg-white p-4 rounded-xl shadow-md border border-[#e5e7eb] mb-6">
             <div className="flex flex-col sm:flex-row gap-4">
               <div className="flex-1">
@@ -209,7 +203,6 @@ export default function Pengaduan() {
                   <option value="Selesai">Selesai</option>
                 </select>
 
-                {/* View Mode Toggle */}
                 <div className="flex border border-[#e5e7eb] rounded-lg overflow-hidden">
                   <button
                     onClick={() => setViewMode('grid')}
@@ -233,12 +226,10 @@ export default function Pengaduan() {
             </div>
           </div>
 
-          {/* Grid View */}
           {viewMode === 'grid' ? (
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
               {filteredPengaduan.map((p) => (
                 <div key={p.id} className="bg-white rounded-xl shadow-md border border-[#e5e7eb] overflow-hidden hover:shadow-lg transition-shadow">
-                  {/* Header */}
                   <div className="p-4 border-b border-[#e5e7eb] bg-gradient-to-r from-[#f8fafc] to-[#f1f5f9]">
                     <div className="flex items-start justify-between mb-2">
                       <div className="flex-1 min-w-0">
@@ -262,8 +253,7 @@ export default function Pengaduan() {
                     </div>
                   </div>
 
-                  {/* Detail */}
-                  <div className="p-4 space-y-3">
+                   <div className="p-4 space-y-3">
                     <div className="flex items-center justify-between text-sm">
                       <span className="text-[#6b7280]">Perusahaan</span>
                       <span className="font-medium text-right">{p.perusahaan}</span>
@@ -278,7 +268,6 @@ export default function Pengaduan() {
                     </div>
                   </div>
 
-                  {/* Tindak Lanjut */}
                   <div className="p-4 border-t border-[#e5e7eb] bg-[#f9fafb]">
                     <p className="text-xs text-[#6b7280] mb-1">Tindak Lanjut:</p>
                     <p className="text-sm text-[#2a436c] line-clamp-2">
@@ -286,7 +275,6 @@ export default function Pengaduan() {
                     </p>
                   </div>
 
-                  {/* Actions */}
                   <div className="p-4 border-t border-[#e5e7eb]">
                     <div className="flex gap-2">
                       <button
@@ -311,7 +299,6 @@ export default function Pengaduan() {
               ))}
             </div>
           ) : (
-            /* Table View */
             <div className="bg-white rounded-xl shadow-md border border-[#e5e7eb] overflow-hidden">
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
@@ -375,7 +362,6 @@ export default function Pengaduan() {
             </div>
           )}
 
-          {/* Edit Note Modal */}
           {editNote.id && (
             <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
               <div className="bg-white rounded-xl shadow-2xl max-w-md w-full p-6">
@@ -413,7 +399,6 @@ export default function Pengaduan() {
             </div>
           )}
 
-          {/* Empty State */}
           {filteredPengaduan.length === 0 && (
             <div className="text-center py-8 bg-white rounded-xl shadow-md border border-[#e5e7eb]">
               <i className="ri-customer-service-line text-4xl text-gray-300 mb-3"></i>
@@ -433,7 +418,6 @@ export default function Pengaduan() {
   );
 }
 
-// StatCard Component
 function StatCard({ title, value, change, color, icon }) {
   return (
     <div className="bg-white p-4 rounded-xl shadow-md border border-[#e5e7eb] hover:shadow-lg transition-shadow">

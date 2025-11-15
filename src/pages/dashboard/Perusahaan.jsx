@@ -25,7 +25,6 @@ export default function Perusahaan() {
     const toggleSidebar = () => setIsMinimized((prev) => !prev);
     const closeMobileSidebar = () => setIsMobileOpen(false);
 
-    // Dummy Data Perusahaan
     const perusahaanList = [
         {
             id: 1,
@@ -93,7 +92,6 @@ export default function Perusahaan() {
         },
     ];
 
-    // Filter data
     const filteredPerusahaan = perusahaanList.filter(perusahaan => {
         const matchesSearch = perusahaan.nama.toLowerCase().includes(searchTerm.toLowerCase()) ||
             perusahaan.sektor.toLowerCase().includes(searchTerm.toLowerCase());
@@ -134,7 +132,6 @@ export default function Perusahaan() {
                     }`}
             >
                 <div className="px-4 sm:px-6">
-                    {/* Header */}
                     <div className="mb-6">
                         <h1 className="text-xl sm:text-2xl font-bold text-[#2a436c]">Manajemen Perusahaan</h1>
                         <p className="text-sm text-[#6b7280] mt-1">
@@ -142,7 +139,6 @@ export default function Perusahaan() {
                         </p>
                     </div>
 
-                    {/* Stats Cards */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
                         <StatCard
                             title="Total Perusahaan"
@@ -174,7 +170,6 @@ export default function Perusahaan() {
                         />
                     </div>
 
-                    {/* Filter Section */}
                     <div className="bg-white p-4 rounded-xl shadow-md border border-[#e5e7eb] mb-6">
                         <div className="flex flex-col sm:flex-row gap-4">
                             <div className="flex-1">
@@ -201,7 +196,6 @@ export default function Perusahaan() {
                                     <option value="Ditolak">Ditolak</option>
                                 </select>
 
-                                {/* View Mode Toggle */}
                                 <div className="flex border border-[#e5e7eb] rounded-lg overflow-hidden">
                                     <button
                                         onClick={() => setViewMode('grid')}
@@ -224,12 +218,10 @@ export default function Perusahaan() {
                         </div>
                     </div>
 
-                    {/* Grid View */}
                     {viewMode === 'grid' ? (
                         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                             {filteredPerusahaan.map((p) => (
                                 <div key={p.id} className="bg-white rounded-xl shadow-md border border-[#e5e7eb] overflow-hidden hover:shadow-lg transition-shadow">
-                                    {/* Company Header */}
                                     <div className="p-4 border-b border-[#e5e7eb] bg-gradient-to-r from-[#f8fafc] to-[#f1f5f9]">
                                         <div className="flex items-start justify-between">
                                             <div className="flex items-center gap-3">
@@ -249,7 +241,6 @@ export default function Perusahaan() {
                                         </div>
                                     </div>
 
-                                    {/* Company Info */}
                                     <div className="p-4 space-y-3">
                                         <div className="flex items-center gap-2 text-sm">
                                             <i className="ri-map-pin-line text-[#6b7280]"></i>
@@ -265,7 +256,6 @@ export default function Perusahaan() {
                                         </div>
                                     </div>
 
-                                    {/* Stats */}
                                     <div className="p-4 border-t border-[#e5e7eb] bg-[#f9fafb]">
                                         <div className="grid grid-cols-3 gap-2 text-center">
                                             <div>
@@ -283,7 +273,6 @@ export default function Perusahaan() {
                                         </div>
                                     </div>
 
-                                    {/* Actions */}
                                     <div className="p-4 border-t border-[#e5e7eb]">
                                         <div className="flex gap-2">
                                             <button className="flex-1 px-3 py-2 text-sm bg-[#4f90c6] text-white rounded-lg hover:bg-[#355485] transition">
@@ -312,7 +301,6 @@ export default function Perusahaan() {
                             ))}
                         </div>
                     ) : (
-                        /* Table View */
                         <div className="bg-white rounded-xl shadow-md border border-[#e5e7eb] overflow-hidden">
                             <div className="overflow-x-auto">
                                 <table className="w-full text-sm">
@@ -389,7 +377,6 @@ export default function Perusahaan() {
                         </div>
                     )}
 
-                    {/* Empty State */}
                     {filteredPerusahaan.length === 0 && (
                         <div className="text-center py-8 bg-white rounded-xl shadow-md border border-[#e5e7eb]">
                             <i className="ri-building-line text-4xl text-gray-300 mb-3"></i>
@@ -409,7 +396,6 @@ export default function Perusahaan() {
     );
 }
 
-// StatCard Component (sama seperti sebelumnya)
 function StatCard({ title, value, change, color, icon }) {
     return (
         <div className="bg-white p-4 rounded-xl shadow-md border border-[#e5e7eb] hover:shadow-lg transition-shadow">

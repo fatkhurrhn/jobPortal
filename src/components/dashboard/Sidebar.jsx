@@ -27,7 +27,6 @@ export default function Layout() {
 
     return (
         <>
-            {/* Overlay Mobile */}
             {isMobileOpen && (
                 <div
                     className="fixed inset-0 bg-black/50 z-40 lg:hidden"
@@ -35,13 +34,11 @@ export default function Layout() {
                 ></div>
             )}
 
-            {/* Sidebar */}
             <aside
                 className={`fixed top-0 left-0 z-50 h-screen bg-[#355485] text-white transition-transform duration-300 lg:transition-all flex flex-col
                 ${isMobileOpen ? 'translate-x-0' : '-translate-x-full'} 
                 lg:translate-x-0 ${isMinimized ? 'w-16' : 'w-64'}`}
             >
-                {/* Brand */}
                 <div className="flex items-center p-5 border-b border-[#4f90c6]">
                     {isMinimized ? (
                         <div className="w-full flex justify-center">
@@ -54,7 +51,6 @@ export default function Layout() {
                     )}
                 </div>
 
-                {/* Menu */}
                 <nav className="mt-4 px-2 flex-1 overflow-y-auto">
                     <ul className="space-y-1">
                         {menuItems.map((item) => {
@@ -79,7 +75,6 @@ export default function Layout() {
                     </ul>
                 </nav>
 
-                {/* Toggle Button (Desktop Only) */}
                 {/* <button
                     onClick={toggleSidebar}
                     className="hidden lg:flex m-4 mb-6 items-center justify-center w-8 h-8 bg-[#2a436c] hover:bg-[#4f90c6] rounded-full text-sm transition-colors"
@@ -89,12 +84,10 @@ export default function Layout() {
                 </button> */}
             </aside>
 
-            {/* Header */}
             <header
                 className={`fixed top-0 right-0 left-0 z-40 bg-white shadow-sm border-b border-[#e5e7eb] px-4 py-4 transition-all duration-300 flex items-center gap-4
                 ${isMinimized ? 'lg:left-16' : 'lg:left-64'} min-h-16`}
             >
-                {/* Hamburger Button (Mobile) */}
                 <button
                     onClick={openMobileSidebar}
                     className="lg:hidden p-2 text-[#6b7280]"
@@ -103,7 +96,6 @@ export default function Layout() {
                     <i className="ri-menu-line text-xl"></i>
                 </button>
 
-                {/* Search */}
                 <div className="hidden sm:flex flex-grow max-w-[300px]">
                     <div className="relative w-full">
                         <i className="ri-search-2-line absolute left-3 top-1/2 -translate-y-1/2 text-[#9ca3af]"></i>
@@ -115,7 +107,6 @@ export default function Layout() {
                     </div>
                 </div>
 
-                {/* Right Section */}
                 <div className="flex items-center gap-3 sm:gap-6 ml-auto">
                     <button
                         className="relative text-[#6b7280] hover:text-[#355485]"
@@ -127,7 +118,6 @@ export default function Layout() {
                         </span>
                     </button>
 
-                    {/* Profile */}
                     <div className="relative">
                         <button
                             onClick={() => setDropdownOpen(!dropdownOpen)}
@@ -163,7 +153,6 @@ export default function Layout() {
                     </div>
                 </div>
 
-                {/* Overlay close dropdown (mobile) */}
                 {dropdownOpen && (
                     <div
                         className="fixed inset-0 z-30 lg:hidden"

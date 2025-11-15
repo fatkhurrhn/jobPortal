@@ -22,7 +22,6 @@ export default function Profil() {
     const toggleSidebar = () => setIsMinimized((prev) => !prev);
     const closeMobileSidebar = () => setIsMobileOpen(false);
 
-    // Data user dummy
     const [user, setUser] = useState({
         foto: 'https://picsum.photos/200',
         nama: 'Ahmad Fauzi',
@@ -52,23 +51,19 @@ export default function Profil() {
 
     const [form, setForm] = useState({ ...user });
 
-    // Toggle edit mode
     const toggleEdit = () => {
         if (editMode) {
-            // Simpan perubahan
             setUser({ ...form });
             alert('Profil berhasil diperbarui!');
         }
         setEditMode(!editMode);
     };
 
-    // Handle input change
     const handleChange = (e) => {
         const { name, value } = e.target;
         setForm({ ...form, [name]: value });
     };
 
-    // Upload foto
     const handlePhotoUpload = (e) => {
         const file = e.target.files?.[0];
         if (file) {
@@ -78,14 +73,12 @@ export default function Profil() {
         }
     };
 
-    // Hapus foto
     const removePhoto = () => {
         if (confirm('Yakin ingin menghapus foto profil?')) {
             setForm({ ...form, foto: 'https://via.placeholder.com/120/9ca3af/FFFFFF?text=NO+PHOTO' });
         }
     };
 
-    // Ubah password
     const handleChangePassword = (e) => {
         e.preventDefault();
         if (!passwordForm.oldPassword || !passwordForm.newPassword) {
@@ -100,7 +93,6 @@ export default function Profil() {
         setPasswordForm({ oldPassword: '', newPassword: '', confirmPassword: '' });
     };
 
-    // Logout
     const handleLogout = () => {
         if (confirm('Yakin ingin keluar?')) {
             localStorage.removeItem('adminToken');
@@ -123,7 +115,6 @@ export default function Profil() {
                 }`}
             >
                 <div className="px-4 sm:px-6">
-                    {/* Header */}
                     <div className="mb-6">
                         <h1 className="text-xl sm:text-2xl font-bold text-[#2a436c]">Profil Pengguna</h1>
                         <p className="text-sm text-[#6b7280] mt-1">
@@ -132,10 +123,8 @@ export default function Profil() {
                     </div>
 
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                        {/* Sidebar Profil */}
                         <div className="lg:col-span-1">
                             <div className="bg-white rounded-xl shadow-md border border-[#e5e7eb] p-6 sticky top-24">
-                                {/* Foto Profil */}
                                 <div className="text-center mb-6">
                                     <div className="relative inline-block">
                                         <img
@@ -170,7 +159,6 @@ export default function Profil() {
                                     </span>
                                 </div>
 
-                                {/* Info Singkat */}
                                 <div className="space-y-3 text-sm">
                                     <div className="flex items-center gap-3">
                                         <i className="ri-user-line text-[#6b7280]"></i>
@@ -186,7 +174,6 @@ export default function Profil() {
                                     </div>
                                 </div>
 
-                                {/* Tombol Utama */}
                                 <div className="mt-6 space-y-3">
                                     <button
                                         onClick={toggleEdit}
@@ -210,9 +197,7 @@ export default function Profil() {
                             </div>
                         </div>
 
-                        {/* Konten Utama */}
                         <div className="lg:col-span-2 space-y-6">
-                            {/* Informasi Pengguna */}
                             <div className="bg-white rounded-xl shadow-md border border-[#e5e7eb] overflow-hidden">
                                 <div className="p-6 border-b border-[#e5e7eb] bg-gradient-to-r from-[#f8fafc] to-[#f1f5f9]">
                                     <h3 className="text-lg font-semibold text-[#2a436c] flex items-center gap-2">
@@ -289,7 +274,6 @@ export default function Profil() {
                                 </div>
                             </div>
 
-                            {/* Ubah Kata Sandi */}
                             <div className="bg-white rounded-xl shadow-md border border-[#e5e7eb] overflow-hidden">
                                 <div className="p-6 border-b border-[#e5e7eb] bg-gradient-to-r from-[#f8fafc] to-[#f1f5f9]">
                                     <h3 className="text-lg font-semibold text-[#2a436c] flex items-center gap-2">
@@ -399,7 +383,6 @@ export default function Profil() {
                                 </div>
                             </div>
 
-                            {/* Log Aktivitas */}
                             <div className="bg-white rounded-xl shadow-md border border-[#e5e7eb] overflow-hidden">
                                 <div className="p-6 border-b border-[#e5e7eb] bg-gradient-to-r from-[#f8fafc] to-[#f1f5f9]">
                                     <h3 className="text-lg font-semibold text-[#2a436c] flex items-center gap-2">

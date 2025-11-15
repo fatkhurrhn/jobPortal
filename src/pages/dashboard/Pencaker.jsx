@@ -24,7 +24,6 @@ export default function Pencaker() {
     const toggleSidebar = () => setIsMinimized((prev) => !prev);
     const closeMobileSidebar = () => setIsMobileOpen(false);
 
-    // Dummy Data Pencaker
     const pencakers = [
         {
             id: 1,
@@ -78,7 +77,6 @@ export default function Pencaker() {
         },
     ];
 
-    // Filter data
     const filteredPencakers = pencakers.filter(pencaker => {
         const matchesSearch = pencaker.nama.toLowerCase().includes(searchTerm.toLowerCase()) ||
             pencaker.nik.includes(searchTerm);
@@ -110,7 +108,6 @@ export default function Pencaker() {
                     }`}
             >
                 <div className="px-4 sm:px-6">
-                    {/* Header */}
                     <div className="mb-6">
                         <h1 className="text-xl sm:text-2xl font-bold text-[#2a436c]">Manajemen Pencari Kerja</h1>
                         <p className="text-sm text-[#6b7280] mt-1">
@@ -118,7 +115,6 @@ export default function Pencaker() {
                         </p>
                     </div>
 
-                    {/* Stats Cards */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
                         <StatCard
                             title="Total Pencaker"
@@ -150,7 +146,6 @@ export default function Pencaker() {
                         />
                     </div>
 
-                    {/* Filter Section */}
                     <div className="bg-white p-4 rounded-xl shadow-md border border-[#e5e7eb] mb-6">
                         <div className="flex flex-col sm:flex-row gap-4">
                             <div className="flex-1">
@@ -183,11 +178,9 @@ export default function Pencaker() {
                         </div>
                     </div>
 
-                    {/* Pencaker List */}
                     <div className="space-y-4">
                         {filteredPencakers.map((p) => (
                             <div key={p.id} className="bg-white rounded-xl shadow-md border border-[#e5e7eb] overflow-hidden">
-                                {/* Profile Header */}
                                 <div className="p-4 sm:p-6 border-b border-[#e5e7eb] bg-[#f9fafb]">
                                     <div className="flex flex-col md:flex-row md:items-start gap-4">
                                         <img
@@ -229,7 +222,6 @@ export default function Pencaker() {
                                     </div>
                                 </div>
 
-                                {/* Action Section */}
                                 <div className="p-4 sm:p-6 border-b border-[#e5e7eb]">
                                     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                                         <div className="text-sm text-[#6b7280]">
@@ -255,7 +247,6 @@ export default function Pencaker() {
                                     </div>
                                 </div>
 
-                                {/* Training History */}
                                 <div className="p-4 sm:p-6">
                                     <h4 className="font-semibold text-[#2a436c] mb-3">Detail Pelatihan</h4>
                                     {p.pelatihan.length > 0 ? (
@@ -298,7 +289,6 @@ export default function Pencaker() {
                         ))}
                     </div>
 
-                    {/* Empty State */}
                     {filteredPencakers.length === 0 && (
                         <div className="text-center py-8 bg-white rounded-xl shadow-md border border-[#e5e7eb]">
                             <i className="ri-search-line text-4xl text-gray-300 mb-3"></i>
@@ -318,7 +308,6 @@ export default function Pencaker() {
     );
 }
 
-// StatCard Component (sama seperti di dashboard)
 function StatCard({ title, value, change, color, icon }) {
     return (
         <div className="bg-white p-4 rounded-xl shadow-md border border-[#e5e7eb] hover:shadow-lg transition-shadow">
