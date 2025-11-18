@@ -20,10 +20,10 @@ function App() {
     <Router>
       <AutoToTop/>
       <Routes>
-        {/* <Route path="/" element={<Navigate to="/login" />} /> */}
-
+        <Route path="/" element={<Navigate to="/login" />} />
+{/* 
         <Route path="/" element={<HomePage />} />
-        <Route path="/try" element={<Try />} />
+        <Route path="/try" element={<Try />} /> */}
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard/profile" element={<Profile />} />
         <Route path="/dashboard" element={<Dashboard />} />
