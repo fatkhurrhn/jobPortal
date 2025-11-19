@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function Navbar() {
   return (
@@ -20,17 +21,17 @@ function Navbar() {
 
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-8">
-                <a href="#" className="text-[#2a436c] hover:text-[#355485] font-medium transition-colors">Beranda</a>
-                <a href="#" className="text-gray-600 hover:text-[#2a436c] transition-colors">Lowongan</a>
-                <a href="#" className="text-gray-600 hover:text-[#2a436c] transition-colors">Pelatihan</a>
-                <a href="#" className="text-gray-600 hover:text-[#2a436c] transition-colors">Informasi</a>
-                <a href="#" className="text-gray-600 hover:text-[#2a436c] transition-colors">Pengaduan</a>
+                <Link to="#" className="text-[#2a436c] hover:text-[#355485] font-medium transition-colors">Beranda</Link>
+                <Link to="/disnaker/lowongan" className="text-gray-600 hover:text-[#2a436c] transition-colors">Lowongan</Link>
+                <Link to="/disnaker/pelatihan" className="text-gray-600 hover:text-[#2a436c] transition-colors">Pelatihan</Link>
+                <Link to="/disnaker/blog" className="text-gray-600 hover:text-[#2a436c] transition-colors">Berita</Link>
+                <Link to="/disnaker/tkwt" className="text-gray-600 hover:text-[#2a436c] transition-colors">TKWT</Link>
               </div>
             </div>
 
             <div className="hidden md:flex items-center gap-4">
-              <a href="/login" className="text-[#2a436c] hover:text-[#355485] font-medium transition-colors">Masuk</a>
-              <a href="/register" className="bg-[#355485] hover:bg-[#2a436c] text-white px-4 py-2 rounded-lg transition-colors">Daftar</a>
+              <Link to="/login" className="text-[#2a436c] hover:text-[#355485] font-medium transition-colors">Masuk</Link>
+              <Link to="/register" className="bg-[#355485] hover:bg-[#2a436c] text-white px-4 py-2 rounded-lg transition-colors">Daftar</Link>
             </div>
 
             <div className="md:hidden">
